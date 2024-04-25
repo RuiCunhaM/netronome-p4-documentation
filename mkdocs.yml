@@ -1,0 +1,16 @@
+site_name: HASLab Documentation
+site_url: https://httpd.cloud63/
+
+theme: readthedocs
+
+markdown_extensions:
+  - pymdownx.superfences
+  - admonition
+
+nav:
+  - Netronome:
+    - Getting Started: "getting-started.md"
+    - Virtual Interfaces: "vfs.md"
+    - Migrating from bmv2: "bmv2.md"
+    - Mac Egress CMD: "mac-cmd.md"
+    - Useful Assets: "assets.md"
