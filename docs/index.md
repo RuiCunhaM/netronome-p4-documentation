@@ -10,3 +10,4 @@ A compilation of different notes and _How tos_ in operating Netronome SmartNICs.
 - [Mac Egress CMD](mac-cmd.md)
 - [Tips and Tricks](tips.md)
 - [Useful Assets](assets.md)
+- [Replication](replication.md)
