@@ -6,7 +6,21 @@ This page highlights some differences from the behavioral model (bmv2).
 - `mark_to_drop()` does **not** receive any argument
 
 ## Field Sizes
-- `egress_spec` is 16 bits long
+- `egress_spec` is 16 bits long 
+
+## Field Values
+- `standard_metadata.instance_type`
+
+| Value | Meaning     |
+|-------|-------------|
+| 0x0   | Normal      |
+| 0x1   | Clone I2I   |
+| 0x2   | Clone E2I   |
+| 0x3   | Recirculate |
+| 0x4   | Resubmit    |
+| 0x8   | Clone I2E   |
+| 0x9   | Clone E2E   |
+| 0xa   | Multicast   |
 
 ## Timestamps
 - Time stamps are 64 bits long

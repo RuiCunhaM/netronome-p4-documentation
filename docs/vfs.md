@@ -2,7 +2,12 @@
 
 When loading a `P4` program, multiple Virtual Interfaces/Functions (VFs) are created (See [Changing the number of VFs](#changing-the-number-of-vfs)). These are usually called `vf0_<n>`, where `n` is the index. VFs work just like normal interfaces, and it is possible to assign them IP addresses.
 
+
 In the configuration files, these interfaces are addressed as `v0.<n>`, while physical interfaces are named `p<n>`. See [config.p4cfg](https://github.com/RuiCunhaM/Template-Netronome-P4/blob/master/configs/config.p4cfg) for an example of basic forwarding between virtual and physical interfaces, allowing for external communication.
+
+In case of needing to route a packet to a virtual interface without getting its value from the `p4cfg` file, these values are static and `v0.0` corresponds to `0x300`,`v0.1` to `0x301` and so on.
+
+The same philosophy applies to physical interfaces. `p0` corresponds to `0x0`, `p1` to `0x1` and so on. 
 
 !!! warning
     When sending network traffic between two or more Netronome SmartNICs keep in mind that VFs with the same name but in different hosts still **have the same MAC address!** Therefore, you should avoid exchanging traffic between VFs with the same name to avoid routing conflicts.
