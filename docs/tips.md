@@ -4,9 +4,17 @@ This page presents some useful tips and tricks. It also compiles some `scripts` 
 
 ---
 
+## Cloning and Multicasting simultaneously (by [Luís Pereira](https://github.com/lumafepe))
+
+In case you need to multicast a packet and also send it to another interface not on the multicast group, you can't do them simultaneously.
+Instead, you first need to clone to the Ingress the packet sending the original packet to the one outside the multicast group.
+Then the first thing you should do in the Ingress is checking for cloned packets. In case it is a cloned packet, multicast it.
+Solving the problem of not being able to do multiple replication operations in the same iteration.
+
+---
 ## Debugging Locks (by [Luís Pereira](https://github.com/lumafepe))
 
-This `script` is meant to be used after compiling a program. It will create a new set of registers that reflect the existent locks in the original program. Those register can later be inspected to help identify acquisitions and releases of locks.
+This `script` is meant to be used before compiling a program. It will create a new set of registers that reflect the existent locks in the original program. Those register can later be inspected to help identify acquisitions and releases of locks.
 
 ```python
 import json
