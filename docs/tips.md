@@ -11,7 +11,7 @@ This implies when someone wants to add a configuration in the p4cfg file accessi
 
 !!! warning
     For some reason that I cannot explain currently, sometimes the compiler inserts `Ingress::` or `Egress::` before the `scalars.<VariableName>` depending if it is used in the Ingress or the Egress.
-    To check if this prefix is needed you can check the `pifs/pif_debug.json` and search for `Ingress::scalers`, if it is defined, it is the correct one to use.
+    To check if this prefix is needed you can check the `pifs/pif_debug.json` and search for `Ingress::scalers`, if it is defined, then it is the correct one to use.
     
 ---
 
