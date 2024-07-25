@@ -4,6 +4,17 @@ This page presents some useful tips and tricks. It also compiles some `scripts` 
 
 ---
 
+## Using variables/metadata as keys in tables.
+
+When converted to micro_c the variables and metadata become stored inside the scalars structure.
+This implies when someone wants to add a configuration in the p4cfg file accessing this structures it must be done by doing `scalars.<VariableName>` or `scalars.metadata@<MetadataField>`.
+
+!!! warning
+    For some reason that I cannot explain currently, sometimes the compiler inserts `Ingress::` or `Egress::` before the `scalars.<VariableName>` depending if it is used in the Ingress or the Egress.
+    To check if this prefix is needed you can check the `pifs/pif_debug.json` and search for `Ingress::scalers`, if it is defined, then it is the correct one to use.
+    
+---
+
 ## Cloning and Multicasting simultaneously (by [Luís Pereira](https://github.com/lumafepe))
 
 In case you need to multicast a packet and also send it to another interface not on the multicast group, you can't do them simultaneously.
