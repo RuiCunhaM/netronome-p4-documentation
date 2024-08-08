@@ -2,6 +2,17 @@
 
 This page presents some useful tips and tricks. It also compiles some `scripts` to help debugging P4 programs.
 
+## No action usage
+---
+
+Do not use `NoAction` outside of tables in the Netronome hardware this will cause an error while loading: `design_data.c:262 table ingress::tbl_NoAction has no allowed actions`.
+
+---
+
+## Validating headers
+
+Even though the Netronome specifies that the validity of a header can be checked in a table using the match type `header_valid` this is yet another error in their documentation. As far as I've seen, there is no way to do it, needing to resource to `if` conditions instead. 
+
 ---
 
 ## Using variables/metadata as keys in tables.
