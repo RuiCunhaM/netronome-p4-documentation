@@ -33,7 +33,7 @@ To develop and load programs into the SmartNICs you require at least one of the 
 ### SDK 
 This is a **Windows** program. Either run Windows from a VM or use a compatibility tool (e.g. [Bottles](https://usebottles.com/)).
 
-- [SDK Setup (.exe)](https://httpd.cloud63/assets/netronome/sdk.exe)
+- [SDK Setup (.exe)](https://cloud63/assets/netronome/sdk.exe)
 
 ---
 
@@ -43,4 +43,4 @@ After installing at least one of the development tools packages you should have 
 - If you installed the Hosted Tool Chain look into `/opt/netronome/doc`.
 - If you're using the SDK, the documentation is available from within the IDE.
 
-[Alternative download (.zip)](https://httpd.cloud63/assets/netronome/docs.zip)
+[Alternative download (.zip)](https://cloud63/assets/netronome/docs.zip)
