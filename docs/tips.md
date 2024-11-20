@@ -9,6 +9,12 @@ Do not use `NoAction` outside of tables in the Netronome hardware this will caus
 
 ---
 
+## Maximum register size
+---
+The maximum number of values in a register is `2,147,483,647` a.k.a. maximum signed integer value.
+
+---
+
 ## Validating headers
 
 Even though the Netronome specifies that the validity of a header can be checked in a table using the match type `header_valid` this is yet another error in their documentation. As far as I've seen, there is no way to do it, needing to resource to `if` conditions instead. 
