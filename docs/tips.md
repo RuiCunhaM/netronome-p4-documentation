@@ -4,7 +4,7 @@ This page presents some useful tips and tricks. It also compiles some `scripts` 
 
 ## Maximum register size
 ---
-For some reason, the maximum size of a register is the maximum value of a signed integer aka `2,147,483,647`.
+The maximum number of values in a register is `2,147,483,647` a.k.a. maximum signed integer value.
 
 ---
 
