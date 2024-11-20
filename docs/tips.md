@@ -2,6 +2,12 @@
 
 This page presents some useful tips and tricks. It also compiles some `scripts` to help debugging P4 programs.
 
+## Maximum register size
+---
+For some reason, the maximum size of a register is the maximum value of a signed integer aka `2,147,483,647`.
+
+---
+
 ## No action usage
 ---
 
