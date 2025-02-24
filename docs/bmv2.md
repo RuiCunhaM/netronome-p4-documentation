@@ -22,6 +22,9 @@ This page highlights some differences from the behavioral model (bmv2).
 | 0x9   | Clone E2E   |
 | 0xa   | Multicast   |
 
+## User defined metadata
+- User defiened metadata fields are not initialized as 0.
+
 ## Timestamps
 - Time stamps are 64 bits long
 - Contrary to Bmv2, the `ingress_global_timestamp` is not available through `standard_metadata`. If you need to use this field you need to:
