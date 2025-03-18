@@ -25,6 +25,11 @@ This page highlights some differences from the behavioral model (bmv2).
 ## User defined metadata
 - User defiened metadata fields are not initialized as 0.
 
+## isValid method
+- Checking if a header is valid can only be used inside an `if` clause or in checksum operation.
+- Using isValid in an attribution will result in `error: identifier "prdata" is undefined` eg.  ```bit<1> value = (bit<1>)(hdr.hdr.isValid());```
+- In tables `valid` matching doesn't exist
+
 ## Timestamps
 - Time stamps are 64 bits long
 - Contrary to Bmv2, the `ingress_global_timestamp` is not available through `standard_metadata`. If you need to use this field you need to:
