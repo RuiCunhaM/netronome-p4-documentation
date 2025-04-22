@@ -8,11 +8,10 @@ markdown_extensions:
   - admonition
 
 nav:
-  - Netronome:
-      - Getting Started: "getting-started.md"
-      - Virtual Interfaces: "vfs.md"
-      - Migrating from bmv2: "bmv2.md"
-      - Mac Egress CMD: "mac-cmd.md"
-      - Tips and Tricks: "tips.md"
-      - Useful Assets: "assets.md"
-      - Replication: "replication.md"
+  - Getting Started: "getting-started.md"
+  - Virtual Interfaces: "vfs.md"
+  - Migrating from bmv2: "bmv2.md"
+  - Mac Egress CMD: "mac-cmd.md"
+  - Tips and Tricks: "tips.md"
+  - Replication: "replication.md"
+  - Useful Assets: "assets.md"

@@ -1,6 +1,6 @@
 # Getting Started
 
-These documentation pages should provide you with enough insights to understand how to use Netronome SmartNICs with `P4` programs.
+This documentation should provide you with enough insights to understand how to use Netronome SmartNICs with `P4` programs.
 
 - To start a new `P4` project, a [template](https://github.com/RuiCunhaM/Template-Netronome-P4) is provided and heavily recommended.
 
