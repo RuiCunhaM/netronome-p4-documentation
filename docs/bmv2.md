@@ -26,8 +26,8 @@ This page highlights some differences from the behavioral model (bmv2).
 - User defiened metadata fields are not initialized as 0.
 
 ## isValid method
-- Checking if a header is valid can only be used inside an `if` clause or in checksum operation.
-- Using isValid in an attribution will result in `error: identifier "prdata" is undefined` eg.  ```bit<1> value = (bit<1>)(hdr.hdr.isValid());```
+- Checking if a header is valid can only be used inside an `if` clause or in a checksum operation.
+- Using `isValid()` in an attribution will result in `error: identifier "prdata" is undefined` eg.  ```bit<1> value = (bit<1>)(hdr.hdr.isValid());```
 - In tables `valid` matching doesn't exist
 
 ## Timestamps
@@ -49,6 +49,7 @@ This page highlights some differences from the behavioral model (bmv2).
         intrinsic_metadata_t intrinsic_metadata;
     }
     ```
+
 ## Known Issues
 
 - Some issues were encountered with `digest messages`. In some cases, the message format was not allowed on Netronome, requiring the `struct` to be changed.

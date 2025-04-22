@@ -1,11 +1,9 @@
 # Assets
 
 ## Development Tools
-To develop and load programs into the SmartNICs you require at least one of the following tool packages. The **Hosted Tool Chain** is a set of command line tools to compile and load programs. The **SDK** is Graphic IDE with multiple debug capabilities (e.g. Breakpoints). 
+To develop and load programs into the SmartNICs you require at least one of the following tool packages. The **Hosted Tool Chain** is a set of command line tools to compile and load programs. The **SDK** is a Graphic IDE with multiple debug capabilities (e.g. Breakpoints). 
 
 ### Hosted Tool Chain (Linux)
-- [Download Link (.deb package)](https://cloud63/assets/netronome/nfp-sdk.deb)
-
 
 **Non Debian systems:**
 
@@ -33,8 +31,6 @@ To develop and load programs into the SmartNICs you require at least one of the 
 ### SDK 
 This is a **Windows** program. Either run Windows from a VM or use a compatibility tool (e.g. [Bottles](https://usebottles.com/)).
 
-- [SDK Setup (.exe)](https://httpd.cloud63/assets/netronome/sdk.exe)
-
 ---
 
 ## Documentation
@@ -42,5 +38,3 @@ After installing at least one of the development tools packages you should have 
 
 - If you installed the Hosted Tool Chain look into `/opt/netronome/doc`.
 - If you're using the SDK, the documentation is available from within the IDE.
-
-[Alternative download (.zip)](https://httpd.cloud63/assets/netronome/docs.zip)

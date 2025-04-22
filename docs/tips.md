@@ -5,7 +5,7 @@ This page presents some useful tips and tricks. It also compiles some `scripts` 
 ## No action usage
 ---
 
-Do not use `NoAction` outside of tables in the Netronome hardware this will cause an error while loading: `design_data.c:262 table ingress::tbl_NoAction has no allowed actions`.
+Do not use `NoAction` outside of tables. In Netronome SmartNICs this will cause an error while loading: `design_data.c:262 table ingress::tbl_NoAction has no allowed actions`.
 
 ---
 
@@ -17,32 +17,34 @@ The maximum number of values in a register is `2,147,483,647` a.k.a. maximum sig
 
 ## Validating headers
 
-Even though the Netronome specifies that the validity of a header can be checked in a table using the match type `header_valid` this is yet another error in their documentation. As far as I've seen, there is no way to do it, needing to resource to `if` conditions instead. 
+Even though Netronome's Documentation specifies that the validity of a header can be checked in a table using the match type `header_valid`, this does not appear to work properly. The solution is to use `if` conditions instead. 
 
 ---
 
 ## Using variables/metadata as keys in tables.
 
-When converted to micro_c the variables and metadata become stored inside the scalars structure.
-This implies when someone wants to add a configuration in the p4cfg file accessing this structures it must be done by doing `scalars.<VariableName>` or `scalars.metadata@<MetadataField>`.
+When converted to `micro_c`, P4 variables and metadata are stored inside the scalars structure. When referencing these properties in the `p4cfg` file, they must be addressed in the following manner: 
+
+- `scalars.<VariableName>`
+- `scalars.metadata@<MetadataField>`
 
 !!! warning
-    For some reason that I cannot explain currently, sometimes the compiler inserts `Ingress::` or `Egress::` before the `scalars.<VariableName>` depending if it is used in the Ingress or the Egress.
-    To check if this prefix is needed you can check the `pifs/pif_debug.json` and search for `Ingress::scalers`, if it is defined, then it is the correct one to use.
+    Sometimes the compiler inserts `Ingress::` or `Egress::` before the `scalars.<VariableName>` depending if it is used in the Ingress or in the Egress.
+    To check if this prefix is needed you can check the `pifs/pif_debug.json` and search for `Ingress::scalars`, if it is defined, then it is the correct one to use.
     
 ---
 
-## Cloning and Multicasting simultaneously (by [Luís Pereira](https://github.com/lumafepe))
+## Cloning and Multicasting simultaneously
 
-In case you need to multicast a packet and also send it to another interface not on the multicast group, you can't do them simultaneously.
-Instead, you first need to clone to the Ingress the packet sending the original packet to the one outside the multicast group.
-Then the first thing you should do in the Ingress is checking for cloned packets. In case it is a cloned packet, multicast it.
-Solving the problem of not being able to do multiple replication operations in the same iteration.
+In case you need to multicast a packet and also send it to another interface not on the multicast group, you can not do both simultaneously.
+As a workaround, first, you need to clone the packet to the Ingress and forward the original one to the inerface outside the multicast group.
+Then, in the Ingress, check for cloned packets, if true, multicast it.
 
 ---
-## Debugging Locks (by [Luís Pereira](https://github.com/lumafepe))
 
-This `script` is meant to be used before compiling a program. It will create a new set of registers that reflect the existent locks in the original program. Those register can later be inspected to help identify acquisitions and releases of locks.
+## Debugging Locks
+
+This `script` is meant to be used before compiling a program. It will create a new set of registers that reflect the existent locks in the original program. Those registers can later be inspected to help identify acquisitions and releases of locks.
 
 ```python
 import json

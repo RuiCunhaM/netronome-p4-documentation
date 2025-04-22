@@ -4,14 +4,14 @@ This page presents some useful information about packet replication.
 
 ---
 
-## General problems in Netronome (by [Luís Pereira](https://github.com/lumafepe))
+## General problems in Netronome
 
 !!! warning
     Keep in mind since the `egress_spec` is used to keep track of the replication operations, only one of these operations can be used per Ingress|Egress iteration.
 
 ---
 
-## Multicast (by [Luís Pereira](https://github.com/lumafepe))
+## Multicast
 
 Creating multicast groups is very simple, just needing to add 
 ```

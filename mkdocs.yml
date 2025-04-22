@@ -1,5 +1,5 @@
-site_name: HASLab Documentation
-site_url: https://httpd.cloud63/
+site_name: Netronome P4 Documentation
+site_url: http://ruicunham.github.io/netronome-p4-documentation
 
 theme: readthedocs
 

@@ -52,7 +52,7 @@ Due to the internal architecture of the NFP-4000 processors, 4 bytes **are requi
     }
     ```
 
-4. Add the table configuration to the `json` file
+4. Add the table configuration to the `p4cfg` file
 
     ```json
     "egress::table_add_empty_nfp_mac_eg_cmd": {

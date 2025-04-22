@@ -1,8 +1,8 @@
-# HASLab Documentation
+# Netronome P4 Documentation
 
 ## Netronome
 
-A compilation of different notes and _How tos_ in operating Netronome SmartNICs. Written by [Rui Monteiro](https://github.com/RuiCunhaM) with contributions from [Luís Pereira](https://github.com/lumafepe) and [Daniel Miranda]().
+A compilation of different notes and _How tos_ in operating Netronome SmartNICs with P4. Written by [Rui Monteiro](https://github.com/RuiCunhaM) and [Luís Pereira](https://github.com/lumafepe) with contributions from [Daniel Miranda](https://github.com/DanielBMiranda).
 
 - [Getting Started](getting-started.md)
 - [Virtual Interfaces](vfs.md)
