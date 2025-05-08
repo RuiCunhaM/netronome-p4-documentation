@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="http://ruicunham.github.io/netronome-p4-documentation/mac-cmd/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Mac Egress CMD - Netronome P4 Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Mac Egress CMD";
+        var mkdocs_page_input_path = "mac-cmd.md";
+        var mkdocs_page_url = "/netronome-p4-documentation/mac-cmd/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Netronome P4 Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vfs/">Virtual Interfaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bmv2/">Migrating from bmv2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Mac Egress CMD</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#disabling-it">Disabling it</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Tips and Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../assets/">Useful Assets</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Netronome P4 Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Mac Egress CMD</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mac-egress-cmd">Mac Egress CMD</h1>
+<p>Due to the internal architecture of the NFP-4000 processors, 4 bytes <strong>are required</strong> to be prepended on each packet exiting the NIC to pass packet modification instructions directly into the hardware. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This only applies on physical egress. Which means that if you are relying on this mechanism to compute checksums it will only work for packets leaving the SmartNIC. Altering packets egressing torwards virtual interfaces, will require normal checksum update through <code>P4</code> control blocks.</p>
+</div>
+<hr />
+<h3 id="usage">Usage</h3>
+<p><strong>If you're using the <a href="https://github.com/RuiCunhaM/Template-Netronome-P4">template provided</a> this is already configured. It is recommended to leave it untouched</strong></p>
+<ol>
+<li>
+<p>Header declaration:</p>
+<pre class="highlight"><code class="language-c">header nfp_mac_eg_cmd_t {
+  bit en_l3_sum;  // Enables L3 checksum computation
+  bit en_l4_sum;  // Enables L4 checksum computation
+  bit en_ts_mark; // Enables Timestamp marking
+  bit&lt;29&gt; ignore;
+}</code></pre>
+</li>
+<li>
+<p>Add it to headers struct (<strong>Top position is mandatory!</strong>)</p>
+<p><pre class="highlight"><code class="language-c">struct headers_t {
+  nfp_mac_eg_cmd_t nfp_mac_eg_cmd;
+  // Other headers....
+}</code></pre>
+3. Add an egress table</p>
+<pre class="highlight"><code class="language-c">action add_empty_nfp_mac_eg_cmd() {
+    hdr.nfp_mac_eg_cmd.setValid();
+    hdr.nfp_mac_eg_cmd = {0, 1, 0, 0x0};
+}
+
+table table_add_empty_nfp_mac_eg_cmd {
+    key = { 
+        standard_metadata.egress_port : exact; 
+    }
+
+    actions = { 
+        NoAction; // From core.p4
+        add_empty_nfp_mac_eg_cmd;
+    }
+
+    default_action = NoAction;
+    size = 2;
+}</code></pre>
+</li>
+<li>
+<p>Add the table configuration to the <code>p4cfg</code> file</p>
+<pre class="highlight"><code class="language-json">"egress::table_add_empty_nfp_mac_eg_cmd": {
+    "rules": [
+        {
+            "name": "p0",
+            "match": {
+                "standard_metadata.egress_port": {
+                    "value": "p0"
+                }
+            },
+            "action": {
+                "type": "egress::add_empty_nfp_mac_eg_cmd"
+            }
+        },
+        {
+            "name": "p2",
+            "match": {
+                "standard_metadata.egress_port": {
+                    "value": "p2"
+                }
+            },
+            "action": {
+                "type": "egress::add_empty_nfp_mac_eg_cmd"
+            }
+        }
+    ]
+}</code></pre>
+</li>
+</ol>
+<hr />
+<h3 id="disabling-it">Disabling it</h3>
+<p>In theory, it should be possible to disable the usage of this header. </p>
+<p><strong>This has not been tested yet!!</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bmv2/" class="btn btn-neutral float-left" title="Migrating from bmv2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tips/" class="btn btn-neutral float-right" title="Tips and Tricks">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../bmv2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tips/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

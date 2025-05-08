@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="http://ruicunham.github.io/netronome-p4-documentation/assets/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Useful Assets - Netronome P4 Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Useful Assets";
+        var mkdocs_page_input_path = "assets.md";
+        var mkdocs_page_url = "/netronome-p4-documentation/assets/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Netronome P4 Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vfs/">Virtual Interfaces</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bmv2/">Migrating from bmv2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mac-cmd/">Mac Egress CMD</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tips/">Tips and Tricks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../replication/">Replication</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Useful Assets</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#development-tools">Development Tools</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hosted-tool-chain-linux">Hosted Tool Chain (Linux)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sdk">SDK</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Netronome P4 Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Useful Assets</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="assets">Assets</h1>
+<h2 id="development-tools">Development Tools</h2>
+<p>To develop and load programs into the SmartNICs you require at least one of the following tool packages. The <strong>Hosted Tool Chain</strong> is a set of command line tools to compile and load programs. The <strong>SDK</strong> is a Graphic IDE with multiple debug capabilities (e.g. Breakpoints). </p>
+<h3 id="hosted-tool-chain-linux">Hosted Tool Chain (Linux)</h3>
+<p><strong>Non Debian systems:</strong></p>
+<ol>
+<li>
+<p>Extract the package contents: </p>
+<pre class="highlight"><code>mkdir tmp
+dpkg-deb -R nfp-sdk.deb tmp</code></pre>
+</li>
+<li>
+<p>Copy the contents to your <code>opt</code></p>
+<pre class="highlight"><code>cp -r tmp/opt/netronome /opt/</code></pre>
+</li>
+<li>
+<p>Add <code>/opt/netronome/p4/bin</code> to your PATH</p>
+</li>
+<li>
+<p>Test by running:</p>
+<pre class="highlight"><code>nfp4build</code></pre>
+</li>
+</ol>
+<h3 id="sdk">SDK</h3>
+<p>This is a <strong>Windows</strong> program. Either run Windows from a VM or use a compatibility tool (e.g. <a href="https://usebottles.com/">Bottles</a>).</p>
+<hr />
+<h2 id="documentation">Documentation</h2>
+<p>After installing at least one of the development tools packages you should have access to all the documentation available: </p>
+<ul>
+<li>If you installed the Hosted Tool Chain look into <code>/opt/netronome/doc</code>.</li>
+<li>If you're using the SDK, the documentation is available from within the IDE.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../replication/" class="btn btn-neutral float-left" title="Replication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../replication/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
