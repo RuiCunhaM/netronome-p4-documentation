@@ -9,6 +9,13 @@ Do not use `NoAction` outside of tables. In Netronome SmartNICs this will cause 
 
 ---
 
+## Casting variable to a lower number of bits
+---
+
+When casting a variable to a lower number of bits ensure that it won't cause an overflow. This will result in Undefined Behaviour, leading to the machine crashing and possibly the SmartNIC to overheat.
+
+---
+
 ## Maximum register size
 ---
 The maximum number of values in a register is `2,147,483,647` a.k.a. maximum signed integer value.
